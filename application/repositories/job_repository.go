@@ -11,6 +11,7 @@ import (
 type JobRepository interface {
 	Insert(job *domain.Job) (*domain.Job, error)
 	Find(id string) (*domain.Video, error)
+	Update(job *domain.Job) (*domain.Job, error)
 }
 
 type JobRepositoryDb struct {
@@ -45,4 +46,14 @@ func (repo JobRepositoryDb) Find(id string) (*domain.Job, error) {
 
 	return &job, nil
 
+}
+
+func (repo JobRepositoryDb) Update(job *domain.Job) (*domain.Job, error) {
+	err := repo.Db.Preload("Video").Save(job).Error
+
+	if err != nil {
+		return nil, err
+	}
+
+	return job, nil
 }
