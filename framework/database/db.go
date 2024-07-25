@@ -30,7 +30,7 @@ func NewDbTest() *gorm.DB {
 	dbInstance.DbTypeTest = "sqlite3"
 	dbInstance.DsnTest = ":memory:"
 	dbInstance.AutoMigrateDb = true
-	dbInstance.Debug = true
+	dbInstance.Debug = false
 
 	connection, err := dbInstance.Connect()
 
