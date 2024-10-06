@@ -1,15 +1,11 @@
-version: '3'
-
 services:
-
   app:
     build: .
     volumes:
       - .:/go/src/
 
   db:
-    image: postgres:9.4
-    restart: always
+    image: postgres:latest
     tty: true
     volumes:
       - .pgdata:/var/lib/postgresql/data
